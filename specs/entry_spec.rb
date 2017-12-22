@@ -4,12 +4,12 @@ RSpec.describe Entry do
   describe "attributes" do
     it "responds to name" do
       entry = Entry.new
-      expect(entry).to respond_to(:phone_number)
+      expect(entry).to respond_to(:name)
     end
 
     it "responds to phone number" do
       entry = Entry.new
-      expect(entry).to respond_to(:name)
+      expect(entry).to respond_to(:phone_number)
     end
 
     it "responds to email" do
