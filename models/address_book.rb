@@ -17,7 +17,8 @@ class AddressBook
    end
 
    def remove_entry(name, phone_number, email)
-     excess_entry = Entry.new(name, phone_number, email)
-     entries.delete(excess_entry)
+     entries.delete_if{ |entry| entry.name==name &&
+                                entry.phone_number==phone_number &&
+                                entry.email==email }
    end
 end
