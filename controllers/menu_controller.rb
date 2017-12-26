@@ -43,40 +43,40 @@ class MenuController
         puts "Sorry, that is not a valid input"
         main_menu
     end
+  end
 
-    def view_all_entries
-      address_book.entries.each do |entry|
-        system "clear"
-        puts entry.to_s
-        entry_submenu(entry)
-      end
-
+  def view_all_entries
+    address_book.entries.each do |entry|
       system "clear"
-      puts "End of entries"
+      puts entry.to_s
+      entry_submenu(entry)
     end
 
-    def create_entry
-      system "clear"
-      puts "New AddressBloc Entry"
+    system "clear"
+    puts "End of entries"
+  end
 
-      print "Name: "
-      name = gets.chomp
-      print "Phone number: "
-      phone = gets.chomp
-      print "Email: "
-      email = gets.chomp
+  def create_entry
+    system "clear"
+    puts "New AddressBloc Entry"
 
-      address_book.add_entry(name, phone, email)
+    print "Name: "
+    name = gets.chomp
+    print "Phone number: "
+    phone = gets.chomp
+    print "Email: "
+    email = gets.chomp
 
-      system "clear"
-      puts "New entry created"
-    end
+    address_book.add_entry(name, phone, email)
 
-    def search_entries
-    end
+    system "clear"
+    puts "New entry created"
+  end
 
-    def read_csv
-    end
+  def search_entries
+  end
+
+  def read_csv
   end
 
   def entry_submenu(entry)
