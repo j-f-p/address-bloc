@@ -90,19 +90,19 @@ class MenuController
       return
     end
 
-    print "Enter an entry number from 1 to #{n_entries}: "
+    print "Enter an entry number from 1 to #{n_entries}, inclusive: "
     entry_number = gets.chomp.to_i
 
-    if not entry_number.is_a? Integer and
-       entry_number < 1 or entry_number > n_entries
+    if entry_number.is_a? Integer and
+       (entry_number > 0 and entry_number <= n_entries)
+      puts "\nEntry number #{entry_number} is:"
+      puts address_book.entries[entry_number - 1].to_s
+    else
       system "clear"
       puts "Invalid entry number"
       view_entry_n
       return
     end
-
-    puts "\nEntry number #{entry_number} is:"
-    puts address_book.entries[entry_number - 1].to_s
   end
 
   def entry_submenu(entry)
