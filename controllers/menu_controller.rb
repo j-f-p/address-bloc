@@ -89,9 +89,9 @@ class MenuController
       puts "There are no entries to view."
       return
     end
-    
+
     print "Enter an entry number from 1 to #{n_entries}: "
-    entry_number = gets.chomp
+    entry_number = gets.chomp.to_i
 
     if not entry_number.is_a? Integer and
        entry_number < 1 or entry_number > n_entries
