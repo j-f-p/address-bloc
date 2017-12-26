@@ -85,6 +85,11 @@ class MenuController
 
   def view_entry_n
     n_entries = address_book.entries.length
+    if n_entries==0
+      puts "There are no entries to view."
+      return
+    end
+    
     print "Enter an entry number from 1 to #{n_entries}: "
     entry_number = gets.chomp
 
