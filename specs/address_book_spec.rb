@@ -76,14 +76,16 @@ RSpec.describe AddressBook do
         book.import_from_csv(file2)
         expect(book.entries.size).to eq 3
       end
+      # Because add_entry sorts entries in alphabetical order, the tests
+      # for the entries below are indexed according to that order
       it "imports the 1st entry" do
         book.import_from_csv(file2)
-        check_entry(book.entries[0],
+        check_entry(book.entries[1],
           "Phil", "555-555-4584", "phil@blocmail.com")
       end
       it "imports the 2nd entry" do
         book.import_from_csv(file2)
-        check_entry(book.entries[1], "Ann", "555-555-4515", "ann@blocmail.com")
+        check_entry(book.entries[0], "Ann", "555-555-4515", "ann@blocmail.com")
       end
       it "imports the 3rd entry" do
         book.import_from_csv(file2)
