@@ -69,5 +69,27 @@ RSpec.describe AddressBook do
           "Sussie", "555-555-2036", "sussie@blocmail.com")
       end
     end
+
+    let(:file2) {"entries_2.csv"}
+    describe "#import_from_csv 2nd file" do
+      it "imports the correct number of entries" do
+        book.import_from_csv(file2)
+        expect(book.entries.size).to eq 3
+      end
+      it "imports the 1st entry" do
+        book.import_from_csv(file2)
+        check_entry(book.entries[0],
+          "Phil", "555-555-4584", "phil@blocmail.com")
+      end
+      it "imports the 2nd entry" do
+        book.import_from_csv(file2)
+        check_entry(book.entries[1], "Ann", "555-555-4515", "ann@blocmail.com")
+      end
+      it "imports the 3rd entry" do
+        book.import_from_csv(file2)
+        check_entry(book.entries[2],
+          "Terry", "555-555-6360", "terry@blocmail.com")
+      end
+    end
   end
 end
