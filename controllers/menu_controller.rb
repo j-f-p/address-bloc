@@ -49,7 +49,7 @@ class MenuController
     address_book.entries.each do |entry|
       system "clear"
       puts entry.to_s
-      entry_submenu(entry)
+      view_all_submenu(entry)
     end
 
     system "clear"
@@ -74,6 +74,18 @@ class MenuController
   end
 
   def search_entries
+    print "Search by name: "
+    name = gets.chomp
+
+    match = address_book.binary_search(name)
+    system "clear"
+
+    if match
+      puts match.to_s
+      search_submenu(match)
+    else
+      puts "No match found for #{name}"
+    end
   end
 
   def read_csv
@@ -94,6 +106,30 @@ class MenuController
       puts "#{file_name} is not a valid CSV file," +
         " please enter the name of a valid CSV file"
       read_csv
+    end
+  end
+
+  def view_all_submenu(entry)
+    puts "n - next entry"
+    puts "d - delete entry"
+    puts "e - edit this entry"
+    puts "m - return to main menu"
+
+    selection = gets.chomp
+
+    case selection
+      when "n"
+      when "d"
+        delete_entry(entry)
+      when "e"
+        edit_entry(entry)
+      when "m"
+        system "clear"
+        main_menu
+      else
+        system "clear"
+        puts "#{selection} is not a valid input"
+        view_all_submenu(entry)
     end
   end
 
@@ -118,28 +154,30 @@ class MenuController
     puts entry
   end
 
-  def entry_submenu(entry)
-    puts "n - next entry"
-    puts "d - delete entry"
+  def search_submenu(entry)
+    puts "\nd - delete entry"
     puts "e - edit this entry"
     puts "m - return to main menu"
 
     selection = gets.chomp
 
     case selection
-      when "n"
       when "d"
+        system "clear"
         delete_entry(entry)
+        main_menu
       when "e"
+        system "clear"
         edit_entry(entry)
-        entry_submenu(entry)
+        main_menu
       when "m"
         system "clear"
         main_menu
       else
         system "clear"
         puts "#{selection} is not a valid input"
-        entry_submenu(entry)
+        puts entry.to_s
+        search_submenu(entry)
     end
   end
 end
