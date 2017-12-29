@@ -47,7 +47,6 @@ class MenuController
 
   def view_all_entries
     address_book.entries.each do |entry|
-      system "clear"
       puts entry.to_s
       view_all_submenu(entry)
     end
@@ -89,7 +88,7 @@ class MenuController
   end
 
   def read_csv
-    print "Enter CSV file to import"
+    print "Enter CSV file to import: "
     file_name = gets.chomp
 
     if file_name.empty?
@@ -119,9 +118,12 @@ class MenuController
 
     case selection
       when "n"
+        system "clear"
       when "d"
+        system "clear"
         delete_entry(entry)
       when "e"
+        system "clear"
         edit_entry(entry)
       when "m"
         system "clear"
@@ -152,6 +154,14 @@ class MenuController
     system "clear"
     puts "Updated entry"
     puts entry
+    unvalidated==true
+    while(unvalidated)
+      print "Accept (y/n)? "
+      acceptance = gets.chomp
+      unvalidated=false if acceptance=="y" or acceptance=="n"
+    end
+    system "clear"
+    edit_entry(entry) if acceptance=="n"
   end
 
   def search_submenu(entry)
