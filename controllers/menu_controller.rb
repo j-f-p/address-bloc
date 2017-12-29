@@ -13,7 +13,8 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-    puts "5 - Exit"
+    puts "5 - Destroy all entries"
+    puts "6 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -36,6 +37,10 @@ class MenuController
         read_csv
         main_menu
       when 5
+        system "clear"
+        destroy_all_entries
+        main_menu
+      when 6
         puts "Good-bye!"
         exit(0)
       else
@@ -108,6 +113,21 @@ class MenuController
     end
   end
 
+  def destroy_all_entries
+    unvalidated=true
+    confirmation=""
+    while(unvalidated)
+      print "Are you sure you want to destroy all entries (y/n)? "
+      confirmation = gets.chomp
+      unvalidated=false if confirmation=="y" or confirmation=="n"
+    end
+    system "clear"
+    if confirmation=="y"
+      address_book.entries.clear
+      puts "All entries were destroyed"
+    end
+  end
+
   def view_all_submenu(entry)
     puts "n - next entry"
     puts "d - delete entry"
@@ -155,6 +175,7 @@ class MenuController
     puts "Updated entry"
     puts entry
     unvalidated=true
+    acceptance=""
     while(unvalidated)
       print "Accept (y/n)? "
       acceptance = gets.chomp
