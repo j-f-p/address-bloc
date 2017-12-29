@@ -161,11 +161,7 @@ class MenuController
       unvalidated=false if acceptance=="y" or acceptance=="n"
     end
     system "clear"
-    if acceptance=="n"
-      edit_entry(entry)
-    else
-      puts "Entry updated for #{entry.name}"
-    end
+    edit_entry(entry) if acceptance=="n"
   end
 
   def search_submenu(entry)
