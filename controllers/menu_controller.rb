@@ -114,6 +114,12 @@ class MenuController
   end
 
   def destroy_all_entries
+    if address_book.entries.length==0
+      system "clear"
+      puts "There are no entries to destroy"
+      return
+    end
+
     unvalidated=true
     confirmation=""
     while(unvalidated)
